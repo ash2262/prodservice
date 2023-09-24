@@ -1,17 +1,13 @@
 package dev.ashish.productservice.models;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
-import jakarta.persistence.ManyToOne;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 
-
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import lombok.*;
 
 @Getter
@@ -24,10 +20,11 @@ public class Product extends  BaseModel{
 private String title;
 private  String description;
 private  String image;
-@ManyToOne
+@ManyToOne(cascade = CascadeType.PERSIST)
+@JoinColumn(name="category")
 private Category category;
 
-@OneToOne
+@OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
 private  Price price;
 
 }
