@@ -86,6 +86,10 @@ public class ProductserviceApplication implements CommandLineRunner {
         productRepository.save(product);
 
         productRepository.deleteById(UUID.fromString("206aca95-43c8-4386-a252-924f9e145f16"));
+        System.out.println(productRepository.countAllByPrice_Currency("Rupee"));
+
+        List<Product> products= productRepository.findAllByPrice_Currency("Rupee");
+
 //        Category category1=  categoryRepository.findById(UUID.fromString("2a27723d-b5fb-4b1b-8df5-bd2f8fe36e5f")).get();
 //
 //        System.out.println("Category name is"+category1.getName());
@@ -93,6 +97,7 @@ public class ProductserviceApplication implements CommandLineRunner {
 
        // Thread.sleep(1000);
 
+        List<Product> products1=productRepository.findAllByTitle("iPhone 15 pro");
 
     }
 
