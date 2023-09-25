@@ -1,5 +1,8 @@
 package dev.ashish.productservice.repositories;
 
+import dev.ashish.productservice.models.Category;
+import dev.ashish.productservice.models.Category;
+
 import dev.ashish.productservice.models.Product;
 import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,6 +24,7 @@ public interface ProductRepository extends JpaRepository<Product, UUID> {
 
      List<Product> findAllByPrice_Currency(String currency);
 
+     List<Product> findAllByCategoryIn(List<Category> categories);
      long countAllByPrice_Currency(String currency);
 
      @Query(value = CustomQueries.FIND_ALL_BY_TITLE,nativeQuery = true)

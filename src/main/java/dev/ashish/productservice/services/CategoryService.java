@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface CategoryService {
     public Category getCategory(String uuid);
-    //List<String> getProductTitles(List<String> categoryUUIDs);
+    List<String> getProductTitles(List<String> categoryUUIDs);
 }
