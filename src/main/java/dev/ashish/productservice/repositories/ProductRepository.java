@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+//import java.util.UUID;
 import java.util.UUID;
 import java.util.function.Function;
 
@@ -23,6 +24,17 @@ public interface ProductRepository extends JpaRepository<Product, UUID> {
      Product findByTitleEqualsAndPrice_Price(String title, double price);
 
      List<Product> findAllByPrice_Currency(String currency);
+
+     @Query(CustomQueries.FIND_PROD_BY_ID)
+     Optional<Product>  findProductById(UUID uuid);
+
+     @Query(value = CustomQueries.FIND_ALL_PRODUCT_BY_CATEGORY)
+     List<Product> getAllProductByCategory(String categoryName);
+     @Query(value = CustomQueries.FIND_ALL_PRODUCT)
+     List<Product> findAllProducts();
+
+     @Query(nativeQuery = true, value = CustomQueries.GET_ALL_PRODUCT_CATEGORY)
+     List<String> getAllProductCategory();
 
      List<Product> findAllByCategoryIn(List<Category> categories);
      long countAllByPrice_Currency(String currency);

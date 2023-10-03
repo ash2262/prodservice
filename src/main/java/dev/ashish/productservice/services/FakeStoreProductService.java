@@ -16,15 +16,16 @@ public class FakeStoreProductService implements ProductService{
 
     private GenericProductDto convertFakeStoreProductIntoGenericProduct(FakeStoreProductDto fakeStoreProductDto){
 
-        GenericProductDto product=new GenericProductDto();
-        product.setId(fakeStoreProductDto.getId());
-        product.setImage(fakeStoreProductDto.getImage());
-        product.setDescription(fakeStoreProductDto.getDescription());
-        product.setTitle(fakeStoreProductDto.getTitle());
-        product.setPrice(fakeStoreProductDto.getPrice());
-        product.setCategory(fakeStoreProductDto.getCategory());
-
-        return  product;
+//        GenericProductDto product=new GenericProductDto();
+//        product.setId(fakeStoreProductDto.getId());
+//        product.setImage(fakeStoreProductDto.getImage());
+//        product.setDescription(fakeStoreProductDto.getDescription());
+//        product.setTitle(fakeStoreProductDto.getTitle());
+//        product.setPrice(fakeStoreProductDto.getPrice());
+//        product.setCategory(fakeStoreProductDto.getCategory());
+//
+//        return  product;
+        return  null;
     }
     public FakeStoreProductService (FakeStoreProductSerivceClient fakeStoreProductSerivceClient){
         this.fakeStoreProductSerivceClient=fakeStoreProductSerivceClient;
