@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+
 import java.util.stream.Collectors;
 
 
@@ -30,16 +30,18 @@ import java.util.stream.Collectors;
     @Override
     public Productdto addonProduct(Productdto productDto) {
         Product product=convertToProduct(productDto);
+        productRepository.save(product);
         return convertProductToDBProductDto(product);
     }
     @Transactional
     @Override
-    public Productdto updateProduct(Productdto productDto, String id)  throws NotFoundException{
+    public Productdto updateProduct(Productdto productDto, Long id)  throws NotFoundException{
         // Retrieve the existing product by ID
-        Optional<Product> optionalProduct = productRepository.findById(UUID.fromString(id));
+        Product product = this.productRepository.findProductById(id);
 
-        if (optionalProduct!=null) {
-            Product existingProduct = optionalProduct.get();
+        if (product!=null) {
+            Product existingProduct = new Product();
+            existingProduct.setId(product.getId());
 
             // Update the properties of the existing product based on the DTO
 
@@ -81,11 +83,11 @@ import java.util.stream.Collectors;
             return convertProductToDBProductDto(existingProduct);
         }
         else
-            throw new NotFoundException("Product with  id "+id+" not found");
+            throw new NotFoundException("product with  id "+id+" not found");
     }
     @Override
-    public Productdto getProductById(String id) throws NotFoundException {
-       Product   product = productRepository.findProductById(UUID.fromString(id)).orElse(null);
+    public Productdto getProductById(Long id) throws NotFoundException {
+       Product   product = productRepository.findProductById(id);
         if (product != null) {
             return convertProductToDBProductDto(product);
         }
@@ -119,10 +121,10 @@ import java.util.stream.Collectors;
 
 
     @Override
-    public Productdto deleteProduct(String id) throws NotFoundException {
-        Product product = productRepository.findById(UUID.fromString(id)).orElse(null);
+    public Productdto deleteProduct(Long id) throws NotFoundException {
+        Product product = productRepository.findProductById(id);
         if(product != null){
-            productRepository.deleteById(UUID.fromString(id));
+            productRepository.delete(product);
             return convertProductToDBProductDto(product);
         }
         else throw new NotFoundException("Product with  id "+id+" not found");

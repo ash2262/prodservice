@@ -7,6 +7,7 @@ import dev.ashish.productservice.models.Product;
 import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.stereotype.Repository;
 
@@ -17,7 +18,7 @@ import java.util.UUID;
 import java.util.function.Function;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, UUID> {
+public interface ProductRepository extends CrudRepository<Product,Long> {
 
     Product findByTitleEquals(String title);
 
@@ -26,7 +27,7 @@ public interface ProductRepository extends JpaRepository<Product, UUID> {
      List<Product> findAllByPrice_Currency(String currency);
 
      @Query(CustomQueries.FIND_PROD_BY_ID)
-     Optional<Product>  findProductById(UUID uuid);
+     Product  findProductById(Long id);
 
      @Query(value = CustomQueries.FIND_ALL_PRODUCT_BY_CATEGORY)
      List<Product> getAllProductByCategory(String categoryName);

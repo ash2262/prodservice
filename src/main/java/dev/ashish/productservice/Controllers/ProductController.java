@@ -29,7 +29,7 @@ public class ProductController {
 
     }
     @GetMapping("{id}")
-    public Productdto getProductById(@PathVariable("id") String id) throws  NotFoundException{
+    public Productdto getProductById(@PathVariable("id") Long id) throws  NotFoundException{
         return  productService.getProductById(id);
     }
     @DeleteMapping("{id}")
@@ -60,7 +60,10 @@ public class ProductController {
         return productService.addonProduct(product);
 
     }
-    public void updateProductById(){
+    @PutMapping("{id}")
+    public Productdto updateProductById(@PathVariable("id") Long id,@RequestBody Productdto product) throws  NotFoundException{
+      //if(product!=null)
+        return  productService.updateProduct(product,id);
 
     }
 }
