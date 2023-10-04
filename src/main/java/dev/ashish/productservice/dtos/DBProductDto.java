@@ -10,7 +10,7 @@ import java.util.UUID;
 @Getter
 @Setter
 public class DBProductDto {
-    private UUID id;
+    private Long id;
     private String title;
     private  String description;
     private  String image;
