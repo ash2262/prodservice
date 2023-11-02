@@ -30,6 +30,12 @@ public class ProductController {
     }
     @GetMapping("{id}")
     public Productdto getProductById(@PathVariable("id") Long id) throws  NotFoundException{
+
+        Productdto productdto=productService.getProductById(id);
+        if(productdto==null){
+            throw  new NotFoundException("Product doesn't exists");
+        }
+
         return  productService.getProductById(id);
     }
     @DeleteMapping("{id}")

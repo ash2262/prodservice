@@ -16,6 +16,7 @@ class FakeStoreProductSerivceClientTest {
     private RestTemplateBuilder restTemplateBuilder;
     @Test
     void testNonExistingProductReturnsNull(){
+
         //        RestTemplate restTemplate = restTemplateBuilder.build();
 //        ResponseEntity<FakeStoreProductDto> response =
 //                restTemplate.getForEntity(specificProductRequestUrl, FakeStoreProductDto.class, id);
